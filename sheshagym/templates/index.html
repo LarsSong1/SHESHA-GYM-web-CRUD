@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Play&display=swap" rel="stylesheet">
+    <!-- HOJAS DE ESTILO -->
+    <link rel="stylesheet" href="{% static 'normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'sheet.css' %}">
+    <script src="https://kit.fontawesome.com/61fe897bc2.js" crossorigin="anonymous"></script>
+    <title>Sesha Gym</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <ul>    
+                <li><img src="{% static 'img/Logo.svg' %}" alt="logo" height="150px" width="150px"></li>
+                <div class="menu">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#membresia">Membresia</a></li>
+                    <li><a href="#contactenos">Contactenos</a></li>
+                    <!-- <li><a href="{% url 'login' %}">Iniciar Sesión</a></li> -->
+                    {% if usuario %}
+                    <li><a href="{% url 'login' %}">Cerrar Sesión</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    {% endif %}
+
+                </div>
+            </ul>
+        </header>
+        <section class="hero" id="hero">
+            <div class="hero--tittle">
+                <h3>Eres Capáz de todo</h3>
+                <h1>Presionate tu mismo</h1>
+                <h5>El único límite es mental</h5>
+            </div>
+            <div class="hero--caja">
+                <div class="hero--caja--img">
+                    <img src="{% static 'img/Logo.svg' %}" alt="logo" width="50px" width="50px">
+                    <p>8%</p>
+                </div>
+                <div class="hero--caja--text">
+                    <ul>
+                        <h4>Contamos con planes</h4>
+                        <li>Individuales<i></i></li>
+                        <li>Parejas<i></i></li>
+                        <li>Grupos<i></i></li>
+                        <li>Empresariales<i></i></li>
+                    </ul>
+                    <form action="{% url 'account' %}" method="post">
+                        {%csrf_token%}
+                        <button>Registrate</button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+        <section class="nosotros" id="info">
+            <img src="{% static 'img/gym-1.png'%}" alt="img-1" width="50px" height="100px">
+            <div class="nosotros--contenido">
+                <ul>
+                    <li>Horarios de Atención
+                        <ul>
+                            <li>Lun/Viernes: 7am a 11pm</li>
+                            <li>Sab/Domingo: 9am a 5pm</li>
+                        </ul>
+                    </li>
+                    <li>Ubicación
+                        <ul>
+                            <li>Calle: Chimborazo y Aurelio Lainez</li>
+                            <li>Calle: Avenida los Angeles</li>
+                        </ul>
+                    </li>
+                    <li>Entrenadores
+                        <ul>
+                            <li>Hombres</li>
+                            <li>Mujeres</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="iconos">
+                    <li><img src="{% static 'img/Vector-r.svg'%}" alt="horariosAtención"></li>
+                    <li><img src="{% static 'img/Vector-u.svg'%}" alt="Ubicación"></li>
+                    <li><img src="{% static 'img/Vector-t.svg'%}" alt="Entrenadores"></li>
+                </ul>
+            </div>
+        </section>
+        <section class="gym" id="gimnasio">
+            <div class="gym--carrusel">
+                <div class="gym--img">
+                    <img class="img" src="{% static 'img/gym-inside1.jpg'%}" alt="carrusel-img1" width="900px" height="600px">
+                    <img class="img" src="{% static 'img/gym-inside2.jpg'%}" alt="carrusel-img2" width="900px" height="600px">
+                    <img class="img" src="{% static 'img/gym-inside3.jpg'%}" alt="carrusel-img3" width="900px" height="600px">
+                    <img class="img" src="{% static 'img/gym-inside4.jpg'%}" alt="carrusel-img4" width="900px" height="600px">
+                </div>
+            </div>
+            <div class="gym--puntos">
+                <h1>Gym</h1>
+                <ul class="puntos">
+                    <li class="punto activo"><p class="caja">1</p></li>
+                    <li class="punto"><p class="caja">2</p></li>
+                    <li class="punto"><p class="caja">3</p></li>
+                    <li class="punto"><p class="caja">4</p></li>
+                </ul>
+            </div>
+        </section>
+        <section class="entrenamientos" id="entrenamientos">
+            <div class="entrenamientos--contenido">
+                <h1>Programas/Entrenamientos</h1>
+                <h5>Elige tu rumbo</h5>
+                <div class="entrenamientos--cajas">
+                    <div class="cajas">
+                        <img src="{% static 'img/yoga.png'%}" alt="img-3" width="100px" height="100px">
+                        </img>
+                        <p>Yoga</p>
+                    </div>
+                    <div class="cajas">
+                        <img src="{% static 'img/baile.png'%}" alt="img-4" width="100px" height="100px">
+                        </img>
+                        <p>Baile</p>
+                    </div>
+                    <div class="cajas">
+                        <img src="{% static 'img/zumba.png'%}" alt="img-5" width="100px" height="100px">
+                        </img>
+                        <p>Zumba</p>
+                    </div>
+                    <div class="cajas">
+                        <img src="{% static 'img/entrenamiento.png'%}" alt="img-6" width="100px" height="100px">
+                        </img>
+                        <p>Entrenamiento</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="membresia" class="individual">
+            <div>
+                <h1>Membresía</h1>
+                <img src="{% static 'img/Membresia Gym.svg'%}" alt="Membresia">
+            </div>
+        </section>
+        <section class="entrenadores" id="entrenadores">
+            <div class="entrenadores--flex">
+                <h1>Entrenadores</h1>
+                <div>
+                    <img class="entrenadores--img img1" src="{% static 'img/gym-instructor1.png'%}" alt="img-7">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Patricia B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img2" src="{% static 'img/gym-instructor3.png'%}" alt="img-8">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Nicolle B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img3" src="{% static 'img/gym-instructor2.png'%}" alt="img-9">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Sofía B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img4" src="{% static 'img/gym-instructor4.png'%}" alt="img-10">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">María B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img5" src="{% static 'img/gym-instructor5.png'%}" alt="img-11">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Thalía B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img6" src="{% static 'img/gym-instructor6.png'%}" alt="img-12">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Colombiana B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img7" src="{% static 'img/gym-instructor7.png'%}" alt="img-13">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Gabriela B.</p>
+                </div>
+                <div>
+                    <img class="entrenadores--img img8" src="{% static 'img/gym-instructor8.png'%}" alt="img-14">
+                    <img class="mini-logo" src="{% static 'img/Logo.svg'%}" alt="logo">
+                    <p class="mini-texto">Mexicana B.</p>
+                </div>
+            </div>
+        </section>
+        <section class="comentarios" id="comen">
+            <form action="{% url 'data' %}" method="post">
+                {%csrf_token%}
+                <h1>Dejanos tu comentario</h1>
+                <textarea class="area" id="comentario" cols="50" rows="6" name="texto_usuario"></textarea>
+                <input type="submit" value="Publicar">
+            </form>
+            
+        </section>
+        <section class="mostrar">
+            {% for i in texto %}
+            <div>
+                <p>{{i.texto}}</p>
+                <section>
+                    <form action="{% url 'borrar' i.id %}" method="post">
+                        {%csrf_token%}
+                        <button class="b">Borrar</button>
+                    </form>
+                    <form action="{% url 'editar' i.id %}" method="post">
+                        {%csrf_token%}
+                        <button class="e">Editar</button>
+                    </form>
+                </section>
+                
+            </div>
+            {% empty %}
+                <h4>No hay comentarios</h4>
+            {% endfor %}
+        </section>
+        <footer>
+            <ul>
+                <img src="{% static 'img/Logo.svg'%}" alt="logo" height="150px" width="150px">
+                <div class="footer--links">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#info">Información</a></li>
+                    <li><a href="#gimnasio">Gym</a></li>
+                    <li><a href="#entrenamientos">Entrenamientos</a></li>
+                    <li><a href="#membresia">Membresia</a></li>
+                    <li><a href="#entrenadores">Entrenadores</a></li>
+                    <li><a href="#comen">Comentarios</a></li>
+                </div>
+                <div class="icons" id="contactenos">
+                    <li><a href=""><img src="{% static 'img/facebook-icon.svg'%}" alt="facebook-icon"></a></li>
+                    <li><a target="_blank" href="https://twitter.com/GavilanezJair"><img src="{% static 'img/twitter-icon.svg'%}" alt="twitter-icon"></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/wayneale02/"><img src="{% static 'img/instagram-icon.svg'%}" alt="instagram-icon"></a></li>
+                </div>
+            </ul>
+        </footer>
+    </div>
+    <script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>

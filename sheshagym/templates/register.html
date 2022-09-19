@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'normalize.css'%}">
+    <link rel="stylesheet" href="{% static 'register.css'%}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-box">
+        <img src="{% static 'img/Logo.svg'%}" class="avatar" alt="Avatar Image">
+        <h1>Login</h1>
+        <form action="{% url 'redireccionlogin'  %}" method="post">
+          {%csrf_token%}
+          <!-- USERNAME INPUT -->
+          <label for="texto">Usuario</label>
+          <input type="text" id="texto" name="usuario" placeholder="Ingresar Usuario">
+          <!-- PASSWORD INPUT -->
+          <label for="correo">Contraseña</label>
+          <input type="password" name="contraseña"  placeholder="Ingresar Contraseña">
+          <label for="password">Contraseña</label>
+          <input type="password" placeholder="Confirmar Contraseña" name="confirmar">
+          <input type="submit" value="Crear Cuenta">
+        </form>
+      </div>
+</body>
+</html>

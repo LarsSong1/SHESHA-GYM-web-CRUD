@@ -1,0 +1,110 @@
+:root{
+    /* Colores */
+    --c-fondo: #101010;
+    --c-cajas: #191919;
+    --c-letras: #FEFEFE;
+    --c-asignar: #FFDF5B;
+    --c-asignar-l: #15161A;
+    /* fuente */
+    --f-titulos: "Inter", sans-serif;
+    --f-texto: "Play", sans-serif;
+    /* Margen por Contenedor */
+    --m-contenedor: 2.5rem;
+    /* Altura por contenedor */
+    --a-contendor: 40.62rem;
+    /* Tamaño */
+    --t-titulo: 3.1rem;
+    --t-subtitulo: 1.2rem;
+    --t-text: 0.9rem;
+    /* Border imagen */
+    --b-imagen: 0.9rem;
+}
+
+body{
+    background: url("img/gym-inside4.jpg") no-repeat;
+    background-size: cover;
+    
+
+}
+/* Contenedor */
+.container{
+    width: 1200px;
+    
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* Sección comentario */
+.comentarios{
+    width: 100%;
+    background-color: var(--c-cajas);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 25rem;
+}
+
+.comentarios form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+    width: 50%;
+    height: 100%;
+}
+.comentarios h1{
+    color: var(--c-letras);
+    text-align: center;
+    font-family: var(--f-titulos);
+    font-size: var(--t-titulo);
+}
+
+.area{
+    width: 100%;
+    border-radius: var(--b-imagen);
+    border: 2px solid var(--c-fondo);
+    border-top: var(--c-letras);
+    border-left: var(--c-letras);
+    box-shadow: 3px 2px 12px var(--c-asignar-l);
+    margin-bottom: 20px;
+}
+
+.comentarios input[type="submit"] {
+    width: 40%;
+    height: 10%;
+    background-color: var(--c-asignar);
+    border: 1px solid var(--c-letras);
+    border-right: var(--c-cajas);
+    border-bottom: var(--c-cajas);
+    border-radius: 5px;
+    color: var(--c-asignar-l);
+    font-weight: 800;
+    margin-right: 30px;
+}
+
+.comentarios div{
+    width: 50%;
+    height: 100%;
+    background-color: var(--c-asignar);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.comentarios div p{
+    border: 2px solid var(--c-fondo);
+    margin: 20px;
+    height: 100px;
+    width: 80%;
+    text-align: center;
+    
+}
+

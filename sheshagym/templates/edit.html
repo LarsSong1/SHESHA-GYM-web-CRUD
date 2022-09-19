@@ -1,0 +1,32 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'editar.css' %}">
+    <link rel="stylesheet" href="{% static 'normalize.css' %}">
+
+    <title>Editar comentario</title>
+</head>
+<body>
+    <div class="container">
+        <section class="comentarios" id="comen">
+            <form action="{% url 'nuevo' id.id  %}" method="POST">
+                {%csrf_token%}
+                <h1>Edita tu comentario</h1>
+                <textarea class="area" id="comentario" cols="50" rows="6" name="nuevo_dato" value="{{texto.id}}" >{{texto.id}}</textarea>
+                <input type="submit" value="Actualizar comentario">
+            </form>
+           
+            <div>
+                <p>{{id.texto}}</p>
+            </div>
+
+
+        </section>
+    </div>
+</body>
+</html>
