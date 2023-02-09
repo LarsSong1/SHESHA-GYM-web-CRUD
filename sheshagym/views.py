@@ -1,3 +1,4 @@
+from re import X
 import sqlite3 as sql
 from django.shortcuts import render, redirect
 from .models import comentario, register_data
@@ -23,14 +24,16 @@ def redireccionarlogin(request):
     conf_contraseña = request.POST["confirmar"]
     if contraseña == conf_contraseña:
         usuario = register_data(nombre_usuario = nombre, contraseña_usuario = contraseña, verificacion_contraseña = conf_contraseña)
-        d_b = "registro.db"
-        coneccion = sql.connect(d_b)
-        cursor = coneccion.cursor()
-        cursor.execute("SELECT nombre_usuario FROM sheshagym_register_data")
-        nicks = cursor.fetchall()
-        for user in nicks:
-            if nombre in user:
-                template = """
+    else:
+        return render(request, "error.html")
+    
+
+    d_b = "registro.db"
+    coneccion = sql.connect(d_b)
+    cursor = coneccion.cursor()
+    cursor.execute("SELECT * FROM sheshagym_register_data")
+    x = cursor.fetchall()
+    template = """
                     <div style="width:100vw; height:100vh; display:flex; flex-direction: column; justify-content:center; align-items:center; background-color: #101010;">
                         <h2 style="color: #FFDF5B">Registro ocupado</h2>
                         <h1 style="color: #FFDF5B">El usuario ya existe en el sistema</h1>
@@ -38,13 +41,16 @@ def redireccionarlogin(request):
                         
                     </div>
                 """
-                return HttpResponse(template)
-            else:
-                usuario.save()
-                return render(request, "login.html", {"usuarios": usuario})
-        
+    for i in x:
+        if nombre in i:
+            print("yes")
+            return HttpResponse(template)
+    
     else:
-        return render(request, "error.html")
+        usuario.save()
+        return render(request, "login.html", {"usuarios": usuario})
+
+        
     
 
 
@@ -54,42 +60,24 @@ def redireccionindex(request):
     d_b = "registro.db"
     coneccion = sql.connect(d_b)
     cursor = coneccion.cursor()
-    cursor.execute("SELECT nombre_usuario FROM sheshagym_register_data")
-    nicks = cursor.fetchall()
-    cursor.execute("SELECT contraseña_usuario FROM sheshagym_register_data")
-    nicks_password = cursor.fetchall()
-    for user in nicks:
+    cursor.execute("SELECT * FROM sheshagym_register_data")
+    users = cursor.fetchall()
+    for user in users:
         if nombre in user:
-            print("si esta el u")
-    
-    for user_password in nicks_password:
-            print("si esta la contraseña")
-            
-    if nombre in user:
-        if contraseña in user_password:
-            return render(request, "index.html", {"usuario": user})
-
-        else:
-            template = """
-                        <div style="width:100vw; height:100vh; display:flex; flex-direction: column; justify-content:center; align-items:center; background-color: #101010;">
-                            <h2 style="color: #FFDF5B">login invalido</h2>
-                            <h1 style="color: #FFDF5B">Contraseña incorrecta</h1>
-                            <h4 style="color: #FEFEFE";>Vuelva e intente de nuevo</h4>
-                            
-                        </div>
-                    """
-            return HttpResponse(template)
-                
-    else:
-        template = """
-                    <div style="width:100vw; height:100vh; display:flex; flex-direction: column; justify-content:center; align-items:center; background-color: #101010;">
-                        <h2 style="color: #FFDF5B">login invalido</h2>
-                        <h1 style="color: #FFDF5B">El usuario no existe en el sistema</h1>
-                        <h4 style="color: #FEFEFE";>Vuelva e intente de nuevo</h4>
-                        
-                    </div>
-                """
-        return HttpResponse(template)
+            print("yes c")
+            if contraseña in user:
+                print("yes b")
+                return render(request, "index.html", {"usuario": user,"user": nombre})
+            else:
+                template = """
+                            <div style="width:100vw; height:100vh; display:flex; flex-direction: column; justify-content:center; align-items:center; background-color: #101010;">
+                                <h2 style="color: #FFDF5B">login invalido</h2>
+                                <h1 style="color: #FFDF5B">El usuario o contaseña esta mal</h1>
+                                <h4 style="color: #FEFEFE";>Vuelva e intente de nuevo</h4>
+                                
+                            </div>
+                        """
+                return HttpResponse(template)
 
 
 def eliminardatos(request, id_table):
@@ -106,7 +94,7 @@ def cogerdatos(request):
 def editpage(request, id_table):
     eliminar = comentario.objects.get(id=id_table)
     print(eliminar)
-    return render(request, "edit.html", {"id": eliminar})
+    return render(request, "edit.html", {"id": eliminar})   
 
 
 def cogerdatosnuevos(request, id_table):

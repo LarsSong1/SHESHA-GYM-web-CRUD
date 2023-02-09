@@ -120,8 +120,9 @@ header ul div li a {
     width: 60%;
     height: 400px;
     background: url("img/jaiden-peters-hCdFM3lELyA-unsplash.jpg");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+
     border-radius: var(--b-imagen);
     margin: 40px;
     display: flex;
@@ -462,7 +463,7 @@ header ul div li a {
     grid-template-rows: repeat(3,1fr);
     grid-template-areas:
                         "titulo titulo titulo titulo" 
-                        "entrenador8 entrenador2 entrenador3 entrenador4"
+                        "entrenador8 entrenador2 entrenador3    entrenador4"
                         "entrenador5 entrenador6 entrenador7 entrenador1";
     place-items: center;
     gap: 20px;
